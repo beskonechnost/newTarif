@@ -1,0 +1,65 @@
+<All>
+  <Lombard number="001" region="Харьков 1">
+    <typeTarif typeName="Standart">
+      <tarifs>
+        <Tarif tarifName="ABC" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="100.0"/>
+            <Prices name="more 6 and less or equal 10" price="200.0"/>
+            <Prices name="more 10 and less or equal 25" price="300.0"/>
+            <Prices name="more 25" price="400.1"/>
+          </ByWeight>
+        </Tarif>
+        <Tarif tarifName="MIN" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="999.0"/>
+            <Prices name="more 6 and less or equal 10" price="888.0"/>
+            <Prices name="more 10 and less or equal 25" price="777.0"/>
+            <Prices name="more 25" price="400.1"/>
+          </ByWeight>
+        </Tarif>
+        <Tarif tarifName="MAX" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="999.0"/>
+            <Prices name="more 6 and less or equal 10" price="888.0"/>
+            <Prices name="more 10 and less or equal 25" price="777.0"/>
+            <Prices name="more 25" price="400.1"/>
+          </ByWeight>
+        </Tarif>
+      </tarifs>
+    </typeTarif>
+  </Lombard>
+  <Lombard number="002" region="Харьков 1">
+    <typeTarif typeName="New">
+      <tarifs>
+        <Tarif tarifName="ABC" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="110.0"/>
+            <Prices name="more 6 and less or equal 10" price="210.0"/>
+            <Prices name="more 10 and less or equal 25" price="310.0"/>
+            <Prices name="more 25" price="410.1"/>
+          </ByWeight>
+        </Tarif>
+        <Tarif tarifName="MIN" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="9991.0"/>
+            <Prices name="more 6 and less or equal 10" price="8881.0"/>
+            <Prices name="more 10 and less or equal 25" price="7771.0"/>
+            <Prices name="more 25" price="4001.1"/>
+          </ByWeight>
+        </Tarif>
+        <Tarif tarifName="MAX" status="true">
+          <ByWeight>
+            <Prices name="less 6" price="9992.0"/>
+            <Prices name="more 6 and less or equal 10" price="8882.0"/>
+            <Prices name="more 10 and less or equal 25" price="7772.0"/>
+            <Prices name="more 25" price="4002.1"/>
+          </ByWeight>
+        </Tarif>
+      </tarifs>
+    </typeTarif>
+  </Lombard>
+  <Lombard number="003" region="Киев">
+    <typeTarif reference="../../Lombard/typeTarif"/>
+  </Lombard>
+</All>

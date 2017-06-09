@@ -1,0 +1,19 @@
+<%@ include file="/views/jspf/directive/page.jspf" %>
+<%@ include file="/views/jspf/directive/taglib.jspf" %>
+<%@ include file="/views/jspf/head.jspf" %>
+
+
+<div id="header" align="center">
+
+        <c:if test="${not empty user}">
+            <div id="leftHeader">
+                <a href="controller?command=AdminListEditions">1</a> &nbsp;
+                <a href="controller?command=AdminListEditions">2</a> &nbsp;
+            </div>
+
+            <div id="rightHeader" >
+                <a href="controller?command=logout">3</a>
+                <a href="controller?command=logout">4</a>
+            </div>
+        </c:if>
+</div>

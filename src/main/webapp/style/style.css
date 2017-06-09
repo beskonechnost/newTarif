@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    background-color: aliceblue;
+    width: 100%;
+    height: 100%;
+}
+
+/***************************************************************
+Header style (TD tag in the first top row)
+***************************************************************/
+#header {
+    height: 25px;
+    margin: 0 auto;
+    background: #aaf0f5;
+}
+
+/***************************************************************
+Style for the left located head menu (DIV tag at left)
+***************************************************************/
+#leftHeader {
+    background: #aaf0f5;
+    float: left;
+    margin-left: 10px;
+    padding: 2px;
+}
+
+/***************************************************************
+Style for the right located head menu (DIV tag at right)
+***************************************************************/
+#rightHeader {
+    background: #aaf0f5;
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+    padding: 2px;
+}
+
+/***************************************************************
+Style for the ERROR message
+***************************************************************/
+.error {
+    font-size: large;
+    color: rgb(204, 0, 0);
+}
+
+/***************************************************************
+Miscellaneous
+***************************************************************/
+.center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.noborder {
+    border: 2px solid red;
+}
+
+/***************************************************************
+Login form (login.jsp)
+***************************************************************/
+.outer:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.inner {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* добавим горизонтальное центрирование */
+.outer {
+    text-align: center;
+}
+
+/**************************************************************/
+
+#lombard_table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th:first-child, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+th, td {
+    background: #D8E6F3;
+    padding: 10px 10px;
+}
+
+.one_line{
+    display:inline-block;
+    padding-left: 3%;
+    vertical-align: top;
+}
+
+
+

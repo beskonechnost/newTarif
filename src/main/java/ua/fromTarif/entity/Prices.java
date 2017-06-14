@@ -15,19 +15,24 @@ public class Prices implements Serializable{
     private String name;
 
     @XStreamAsAttribute
+    private int testPrice;
+
+    @XStreamAsAttribute
     private double price;
 
     public Prices() {
     }
 
-    public Prices(String name, double price) {
+    public Prices(String name, double price, int testPrice) {
         this.name = name;
         this.price = price;
+        this.testPrice = testPrice;
     }
 
     public Prices(Prices prices) {
         this.name = new String(prices.getName());
         this.price = new Double(prices.getPrice());
+        this.testPrice = new Integer(prices.getTestPrice());
     }
 
     public String getName() {
@@ -44,6 +49,14 @@ public class Prices implements Serializable{
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getTestPrice() {
+        return testPrice;
+    }
+
+    public void setTestPrice(int testPrice) {
+        this.testPrice = testPrice;
     }
 
     @Override

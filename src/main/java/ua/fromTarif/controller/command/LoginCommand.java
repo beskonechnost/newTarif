@@ -58,14 +58,22 @@ public class LoginCommand extends Command {
             if(u1.equals(user)){
                 forward = Path.ALL_LOMBARD_PAGE;
                 try {
-                    List<Lombard> lombards = Marshal.unmarshallingLombard(new File("D:\\projects\\New\\newTarif\\All.xml"));
+                    List<Lombard> lombards1 = Marshal.unmarshallingLombard(new File("D:\\projects\\New\\newTarif\\All.xml"));
 
 /////////////////////
 
+                    List<Lombard> lombards = new ArrayList<Lombard>();
+                    List<Lombard> fromType = new ArrayList<Lombard>();
+
                     List<Type> type = new ArrayList<Type>();
-                    for(Lombard l : lombards){
-                        LOG.trace("number == "+ l.getNumber()+"type =="+l.getTypeTarif().hashCode());
-                        LOG.trace("number == "+ l.getNumber()+"type =="+ l.getTypeTarif());
+                    for(Lombard l : lombards1){
+
+                        if(l.isFormType()){
+                            fromType.add(l);
+                        }else {
+                            lombards.add(l);
+                        }
+
                         boolean f = true;
                         for(Type s : type){
                             if(s.getTypeName().equals(l.getTypeTarif().getTypeName())){
@@ -77,27 +85,12 @@ public class LoginCommand extends Command {
                         }
                     }
 
-                    /*
-                    for(Type t : type){
-                        for(Lombard l :lombards){
-                            if(t.getTypeName().equals(l.getTypeTarif().getTypeName())){
-                                l.setTypeTarif(t);
-                            }
-                        }
-                    }
-
-                    LOG.trace("======================================");
-                    for (Lombard l : lombards){
-                        LOG.trace("type == "+ l.getTypeTarif().hashCode());
-                        LOG.trace("type == "+ l.getTypeTarif());
-                    }
-                    */
-
 /////////////////////////
 
                     int size = lombards.size();
                     session.setAttribute("user", user);
                     session.setAttribute("lombards", lombards);
+                    session.setAttribute("fromType", fromType);
                     session.setAttribute("size", size);
 
                     List<String> listRegion = new ArrayList<String>();

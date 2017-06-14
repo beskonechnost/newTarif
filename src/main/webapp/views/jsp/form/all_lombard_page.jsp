@@ -51,7 +51,16 @@
                                 </c:choose>
                             </td>
                             <td><a href="controller?command=lombardTarif&numberLombard=${item.number}">Подробнее</a></td>
-                            <td><a href="controller?command=lombardTarif&numberLombard=${item.number}">Уникальный</a></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${item.typeTarif.typeName=='Standart'}">
+                                       <a href="controller?command=lombardTarif&numberLombard=${item.number}">Сделать уникальным</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <a href="controller?command=lombardTarif&numberLombard=${item.number}">Сделать стандартным</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td><a href="controller?command=SortByPrice&lombard=item">Удалить</a></td>
                         </tr>
                     </c:forEach>

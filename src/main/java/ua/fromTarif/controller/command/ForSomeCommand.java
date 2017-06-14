@@ -27,40 +27,53 @@ public class ForSomeCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
         HttpSession session = request.getSession(true);
 
-        String select[] = request.getParameterValues("choose");
+        List<String> sel = new ArrayList<String>(Arrays.asList(request.getParameterValues("choose")));
 
-        List<String> sel = new ArrayList<String>(Arrays.asList(select));
-
-        if (select == null && select.length == 0) {
+        if (sel == null && sel.size() == 0) {
             throw new AppException("Нет выбраных ЛО для изменения цены!");
         }
 
         List<Lombard> lombards = (List<Lombard>) session.getAttribute("lombards");
-
+        List<Lombard> fromType = (List<Lombard>) session.getAttribute("fromType");
+        LOG.debug("fromType ===> " + fromType.toString());
 
         StringBuffer nameAction = new StringBuffer();
         nameAction.append("Для_");
 
         List<Lombard> selectLombards = new ArrayList<Lombard>();
         Type newType=null;
-        for(int i = 0; i<select.length; i++){
-            nameAction.append(select[i]);
-            nameAction.append("_");
-            for(Lombard l : lombards){
-                if(newType==null){
-                    if(l.getTypeTarif().getTypeName().equals("Standart")){
 
-                        //////////////////////
+        for(String s : sel){
+            nameAction.append(s);
+            nameAction.append("_");
+
+            for(Lombard l : lombards){
+                if(s.equals(l.getNumber())){
+                    selectLombards.add(l);
+                    break;
+                }
+            }
+            continue;
+        }
+
+        for(Lombard l : lombards){
+
+            if(newType==null){
+
+                for(Lombard lft : fromType) {
+
+                    if (lft.getNumber().equals("Form Type Standart")) {
 
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         ObjectOutputStream ous = new ObjectOutputStream(baos);
-                        ous.writeObject(l.getTypeTarif());
+                        ous.writeObject(lft.getTypeTarif());
                         ous.close();
                         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
                         ObjectInputStream ois = new ObjectInputStream(bais);
 
                         try {
                             newType = (Type) ois.readObject();
+                            newType.setTypeName(String.valueOf(nameAction));
                         } catch (ClassNotFoundException e) {
                             throw new AppException("ClassNotFoundException");
                         }
@@ -68,21 +81,16 @@ public class ForSomeCommand extends Command {
 
                         ///////////////////////////
 
-                        LOG.debug("l ===> "+l.getTypeTarif().toString());
-                        LOG.debug("l ===> "+l.getTypeTarif().hashCode());
-                        LOG.debug("l name ===> "+l.getTypeTarif().getTypeName().hashCode());
-                        LOG.debug("newType ===> "+newType.toString());
-                        LOG.debug("newType ===> "+newType.hashCode());
-                        LOG.debug("newType name ===> "+newType.getTypeName().hashCode());
+                        LOG.debug("lft string ===> " + l.getTypeTarif().toString());
+                        LOG.debug("lft hash ===> " + l.getTypeTarif().hashCode());
+                        LOG.debug("lft name ===> " + l.getTypeTarif().getTypeName().hashCode());
+                        LOG.debug("newType string ===> " + newType.toString());
+                        LOG.debug("newType hash ===> " + newType.hashCode());
+                        LOG.debug("newType name ===> " + newType.getTypeName().hashCode());
 
                     }
                 }
-                if(select[i].equals(l.getNumber())){
-                    selectLombards.add(l);
-                    break;
-                }
             }
-            continue;
         }
 
         newType.setTypeName(String.valueOf(nameAction));

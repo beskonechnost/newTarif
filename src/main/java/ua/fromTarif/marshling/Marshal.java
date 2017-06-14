@@ -20,15 +20,10 @@ import java.util.List;
  */
 public class Marshal {
 
-    private static final Logger LOG = Logger.getLogger(Marshal.class);
-
     public static void marshallerLombard(List<Lombard> object, String nameXmlFile) throws IOException {
         XStream xStream = new XStream(new DomDriver());
         xStream.alias(nameXmlFile, List.class);
         xStream.processAnnotations(Lombard.class);
-
-        LOG.debug("Marshal ===> "+object);
-
         String xml = xStream.toXML(object);
         saveToFile(xml, nameXmlFile);
     }
@@ -37,7 +32,6 @@ public class Marshal {
         XStream xStream = new XStream(new DomDriver());
         xStream.alias(nameXmlFile, List.class);
         xStream.processAnnotations(User.class);
-
         String xml = xStream.toXML(object);
         saveToFile(xml, nameXmlFile);
     }
@@ -55,15 +49,17 @@ public class Marshal {
         xStream.alias("Lombard", Lombard.class);
         xStream.aliasAttribute(Lombard.class, "number", "number");
         xStream.aliasAttribute(Lombard.class, "region", "region");
+        xStream.aliasAttribute(Lombard.class, "formType", "formType");
         xStream.alias("Type", Type.class);
         xStream.aliasAttribute(Type.class, "typeName", "typeName");
         xStream.alias("Tarif", Tarif.class);
         xStream.aliasAttribute(Tarif.class, "tarifName", "tarifName");
         xStream.aliasAttribute(Tarif.class, "status", "status");
-        xStream.aliasField("ByWeight", Tarif.class, "testPrice");
+        xStream.aliasField("ByWeight", Tarif.class, "tarifPrices");
         xStream.alias("Prices", Prices.class);
         xStream.aliasAttribute(Prices.class, "name", "name");
         xStream.aliasAttribute(Prices.class, "price", "price");
+        xStream.aliasAttribute(Prices.class, "testPrice", "testPrice");
 
         xStream.registerConverter((Converter) new EncodedByteArrayConverter());
         return (ArrayList<Lombard>) xStream.fromXML(file);

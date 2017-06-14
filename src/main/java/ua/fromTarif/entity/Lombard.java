@@ -3,8 +3,6 @@ package ua.fromTarif.entity;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
-import java.util.*;
-
 /**
  * Created by Андрей on 17.05.2017.
  */
@@ -15,6 +13,8 @@ public class Lombard implements Comparable<Lombard>{
     private String number;
     @XStreamAsAttribute
     private String region;
+    @XStreamAsAttribute
+    private boolean formType;
 
     private Type typeTarif;
 
@@ -25,6 +25,14 @@ public class Lombard implements Comparable<Lombard>{
         this.number = number;
         this.region = region;
         this.typeTarif = typeTarif;
+        this.formType = false;
+    }
+
+    public Lombard(String number, String region, Type typeTarif, boolean fromType) {
+        this.number = number;
+        this.region = region;
+        this.typeTarif = typeTarif;
+        this.formType = fromType;
     }
 
     public String getNumber() {
@@ -49,6 +57,14 @@ public class Lombard implements Comparable<Lombard>{
 
     public void setTypeTarif(Type typeTarif) {
         this.typeTarif = typeTarif;
+    }
+
+    public boolean isFormType() {
+        return formType;
+    }
+
+    public void setFormType(boolean formType) {
+        this.formType = formType;
     }
 
     @Override

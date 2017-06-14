@@ -19,7 +19,7 @@ public class Tarif implements Serializable{
     private boolean status;
 
     @XStreamAlias("ByWeight")
-    private List<Prices> testPrice;
+    private List<Prices> tarifPrices;
 
     public Tarif() {
     }
@@ -27,12 +27,12 @@ public class Tarif implements Serializable{
     public Tarif(Tarif tarif) {
         this.tarifName = new String(tarif.getTarifName());
         this.status = new Boolean(tarif.isStatus());
-        this.testPrice = tarif.cloneThisTarifListTestPrice();
+        this.tarifPrices = tarif.cloneThisTarifListTestPrice();
     }
 
     public Tarif(String testPriceName) {
         this.tarifName = testPriceName;
-        this.testPrice = new ArrayList<Prices>() {
+        this.tarifPrices = new ArrayList<Prices>() {
         };
         this.status=true;
     }
@@ -45,30 +45,30 @@ public class Tarif implements Serializable{
         this.status = status;
     }
 
-    public Tarif(String testPriceName, List<Prices> testPrice) {
+    public Tarif(String testPriceName, List<Prices> tarifPrices) {
         this.tarifName = testPriceName;
-        this.testPrice = testPrice;
+        this.tarifPrices = tarifPrices;
         this.status=true;
 
     }
 
     public void addPrice(Prices price){
-        testPrice.add(price);
+        tarifPrices.add(price);
     }
 
     public void deletePriceForName(String priceName){
         Prices p1= null;
-        Iterator<Prices> iterator = testPrice.iterator();
+        Iterator<Prices> iterator = tarifPrices.iterator();
             while (iterator.hasNext()){
                 Prices p = iterator.next();
                 if(p.getName().equals(priceName)) p1=p;
             }
-        testPrice.remove(p1);
+        tarifPrices.remove(p1);
     }
 
     public void setPriceForName(String priceName, Double newPrice){
         Prices p1= null;
-        Iterator<Prices> iterator = testPrice.iterator();
+        Iterator<Prices> iterator = tarifPrices.iterator();
         while (iterator.hasNext()){
             Prices p = iterator.next();
             if(p.getName().equals(priceName)) p1=p;
@@ -77,15 +77,15 @@ public class Tarif implements Serializable{
     }
 
     public void deletePrice(Prices price){
-        testPrice.remove(price);
+        tarifPrices.remove(price);
     }
 
-    public List<Prices> getTestPrice() {
-        return testPrice;
+    public List<Prices> getTarifPrices() {
+        return tarifPrices;
     }
 
-    public void setTestPrice(List<Prices> testPrice) {
-        this.testPrice = testPrice;
+    public void setTarifPrices(List<Prices> tarifPrices) {
+        this.tarifPrices = tarifPrices;
     }
 
     public String getTarifName() {
@@ -101,7 +101,7 @@ public class Tarif implements Serializable{
         return "TestPrice{" +
                 "tarifName='" + tarifName + '\'' +
                 "status='" + status + '\'' +
-                ", testPrice=" + testPrice +
+                ", tarifPrices=" + tarifPrices +
                 '}';
     }
 
@@ -111,8 +111,8 @@ public class Tarif implements Serializable{
     }
 
     public List<Prices> cloneThisTarifListTestPrice() {
-        List<Prices> clonedList = new ArrayList<Prices>(testPrice.size());
-        for (Prices prices : testPrice) {
+        List<Prices> clonedList = new ArrayList<Prices>(tarifPrices.size());
+        for (Prices prices : tarifPrices) {
             clonedList.add(new Prices(prices));
         }
         return clonedList;
